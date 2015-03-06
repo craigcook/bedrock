@@ -575,3 +575,14 @@ def hello(request):
 class HelloStartView(LatestFxView):
 
     template_name = 'firefox/hello/start.html'
+
+
+class FeedbackView(TemplateView):
+
+    def get_template_names(self):
+        rating = self.request.GET.get('rating', 0)
+        if rating > '3':
+            template = 'firefox/feedback/happy.html'
+        else:
+            template = 'firefox/feedback/unhappy.html'
+        return template
