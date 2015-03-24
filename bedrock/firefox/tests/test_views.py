@@ -29,15 +29,12 @@ class TestFeedbackView(TestCase):
         view.request = RequestFactory().get('/')
         eq_(view.get_template_names(), ['firefox/feedback/unhappy.html'])
 
-
     def test_get_template_names_happy(self):
         view = views.FeedbackView()
         view.request = RequestFactory().get('/?rating=5')
         eq_(view.get_template_names(), ['firefox/feedback/happy.html'])
 
-
     def test_get_template_names_unhappy(self):
         view = views.FeedbackView()
         view.request = RequestFactory().get('/?rating=1')
         eq_(view.get_template_names(), ['firefox/feedback/unhappy.html'])
-
