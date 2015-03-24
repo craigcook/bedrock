@@ -585,4 +585,4 @@ class FeedbackView(TemplateView):
             template = 'firefox/feedback/happy.html'
         else:
             template = 'firefox/feedback/unhappy.html'
-        return template
+        return [template]
