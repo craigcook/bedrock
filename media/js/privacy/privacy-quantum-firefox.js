@@ -1,8 +1,10 @@
 (function() {
     'use strict';
 
-    var strings = document.getElementById('strings');
+    var strings;
     var topicHeaders;
+    var initialTopic;
+    var initialTopicContent;
 
     /**
      * Check for feature support
@@ -49,9 +51,10 @@
 
     // Don't execute if features aren't supported and client isn't desktop Firefox
     if (supportsBaselineJS() && Mozilla.Client.isFirefoxDesktop) {
+        strings = document.getElementById('strings');
         topicHeaders = document.querySelectorAll('.privacy-body .content-girdle > section');
-        var initialTopic = topicHeaders[0].querySelector('section');
-        var initialTopicContent = initialTopic.querySelector('div');
+        initialTopic = topicHeaders[0].querySelector('section');
+        initialTopicContent = initialTopic.querySelector('div');
 
         // and that the UITour works (requires base/uitour-lib.js)
         Mozilla.UITour.ping(function() {

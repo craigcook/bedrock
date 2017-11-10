@@ -1,10 +1,12 @@
 (function() {
     'use strict';
 
-    var strings = document.getElementById('strings');
+    var strings;
     var mainContent;
     var topicHeaders;
     var topics = [];
+    var tabpanelCloseText;
+    var tabpanelOpenText;
 
     /**
      * Check for feature support
@@ -223,10 +225,11 @@
 
     // Don't execute if features aren't supported
     if (supportsBaselineJS()) {
+        strings = document.getElementById('strings');
         mainContent = document.querySelector('.privacy-body');
         topicHeaders = document.querySelectorAll('.privacy-body .content-girdle > section');
-        var tabpanelCloseText = dataAttributeHandler({ elem: strings, property: 'data-tabpanel-close-text' });
-        var tabpanelOpenText = dataAttributeHandler({ elem: strings, property: 'data-tabpanel-open-text' });
+        tabpanelCloseText = dataAttributeHandler({ elem: strings, property: 'data-tabpanel-close-text' });
+        tabpanelOpenText = dataAttributeHandler({ elem: strings, property: 'data-tabpanel-open-text' });
 
         /* add a class to indicate that js is enabled. This will trigger
         the appropriate styling to be applied */
