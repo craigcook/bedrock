@@ -65,15 +65,12 @@ h1, h2, h3, h4, h5, h6 {
 // Main content section
 
 .main-content {
-    background: url('/media/img/firefox/whatsnew/fox-tail-small.png') top right -420px no-repeat,
-                linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
+    background: linear-gradient(87deg, #6a11cb 0%, #2575fc 100%);
     color: #fff;
     text-align: center;
     padding: 20px 0 40px 0;
 
     @media #{$mq-tablet} {
-        background: url('/media/img/firefox/whatsnew/fox-tail.png') top center no-repeat,
-                    linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
         min-height: 500px; // mitigate page height jump when conditional content is displayed
         padding: 60px 0;
         text-align: left;
@@ -223,7 +220,7 @@ html[dir="rtl"] .content-header {
 
  // common styles for both states
 .no-js,
-.show-fxa-mobile {
+.show-fx-mobile {
     .fx-mobile-container {
         display: block;
     }
@@ -250,7 +247,7 @@ html[dir="rtl"] .content-header {
 }
 
 .no-js .has-send-to-device,
-.has-send-to-device.show-fxa-mobile {
+.has-send-to-device.show-fx-mobile {
     @media #{$mq-tablet} {
         .content-container {
             width: 600px;
@@ -263,7 +260,7 @@ html[dir="rtl"] .content-header {
 }
 
 .no-js .no-send-to-device,
-.no-send-to-device.show-fxa-mobile {
+.no-send-to-device.show-fx-mobile {
     @media #{$mq-tablet} {
         .content-container {
             width: 680px;
