@@ -5,9 +5,9 @@
 @import '../../pebbles/includes/lib';
 @import '../../hubs/sections';
 @import 'header';
-@import 'send-to-device';
+@import 'send-yourself';
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Common elements
 
 body {
@@ -22,11 +22,11 @@ h1, h2, h3, h4, h5, h6 {
 // Logos
 
 .logo-wrapper {
-    height: 100px;
+    height: 80px;
     margin: 20px auto 0;
     overflow: hidden;
     position: relative;
-    width: 100px;
+    width: 80px;
 
     img {
         left: 0;
@@ -47,7 +47,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.show-focus .logo-wrapper img {
+.show-focus .logo-wrapper img,
+.show-klar .logo-wrapper img {
     &.logo-focus {
         display: block;
     }
@@ -65,15 +66,12 @@ h1, h2, h3, h4, h5, h6 {
 // Main content section
 
 .main-content {
-    background: url('/media/img/firefox/whatsnew/fox-tail-small.png') top right -420px no-repeat,
-                linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
+    background: linear-gradient(87deg, #6a11cb 0%, #2575fc 100%);
     color: #fff;
     text-align: center;
     padding: 20px 0 40px 0;
 
     @media #{$mq-tablet} {
-        background: url('/media/img/firefox/whatsnew/fox-tail.png') top center no-repeat,
-                    linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
         min-height: 500px; // mitigate page height jump when conditional content is displayed
         padding: 60px 0;
         text-align: left;
@@ -103,46 +101,59 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Main page content header general styles
 
 .content-header {
     padding: 20px;
     position: relative;
     text-align: center;
+    margin-bottom: 20px;
 
     h2 {
-        @include font-size-level3;
-        font-weight: normal;
-        margin-bottom: 20px;
+        @include font-size-level2;
+        margin-bottom: .5em;
+    }
+
+    h3 {
+        @include font-size-level5;
+        margin-top: 40px;
     }
 
     .tagline {
-        @include font-size-level5;
+        @include font-size-level4;
         line-height: 1.5;
         margin: 0 auto 20px;
+
+        li {
+            margin-bottom: .5em;
+        }
     }
 
     p {
-        @include font-size-level5;
+        @include font-size-level6;
     }
 
-    a:link,
-    a:visited {
+    .more {
         @include font-size-level5;
-        color: #fff;
+
+        a:link,
+        a:visited {
+            color: #fff;
+        }
     }
 
     @media #{$mq-tablet} {
         padding: 0;
         text-align: left;
 
-        h2 {
-            margin-bottom: 10px;
+        .tagline {
+            margin: 0 0 30px;
         }
 
-        .tagline {
-            margin: 0 0 50px;
+        ul.tagline {
+            list-style: disc;
+            padding-left: 1em;
         }
     }
 }
@@ -153,7 +164,8 @@ html[dir="rtl"] .content-header {
     }
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Firefox accounts
 
 #fxa-iframe-config {
@@ -183,7 +195,7 @@ html[dir="rtl"] .content-header {
     @media #{$mq-tablet} {
         // sets width for logo and content containers
         .content-container {
-            width: 680px;
+            width: $width-tablet - 40px;
         }
 
         .fxa-container {
@@ -205,65 +217,35 @@ html[dir="rtl"] .content-header {
 
     @media #{$mq-desktop} {
         .content-container {
-            width: 840px;
+            width: $width-desktop - 40px;
         }
 
         .fxa-container {
             grid-column-gap: 60px;
-            grid-template-columns: auto 350px;
+            grid-template-columns: 1fr 350px;
         }
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Firefox mobile - 2 possible states:
 // 1. Send to Device widget
 // 2. QR code (if widget is not available)
-// this state is also shown when JS is disabled
+// Also the default state if JS isn't available.
 
- // common styles for both states
-.no-js,
-.show-fxa-mobile {
+.has-send-to-device.show-fx-mobile {
     .fx-mobile-container {
         display: block;
     }
 
-    @media #{$mq-phone-wide} {
-        .mobile-download-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin: 0 auto 20px;
-            width: 400px;
-        }
-    }
-
-    @media #{$mq-tablet} {
-        .mobile-download-buttons {
-            justify-content: flex-start;
-            margin: 0;
-
-            li {
-                width: 200px;
-            }
-        }
-    }
-}
-
-.no-js .has-send-to-device,
-.has-send-to-device.show-fxa-mobile {
     @media #{$mq-tablet} {
         .content-container {
             width: 600px;
         }
-
-        .content-header .tagline {
-            margin-bottom: 20px;
-        }
     }
 }
 
-.no-js .no-send-to-device,
-.no-send-to-device.show-fxa-mobile {
+.no-send-to-device.show-fx-mobile {
     @media #{$mq-tablet} {
         .content-container {
             width: 680px;
@@ -288,38 +270,38 @@ html[dir="rtl"] .content-header {
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Focus
 
-.show-focus {
+//* -------------------------------------------------------------------------- */
+// Firefox Focus - 2 possible states:
+// 1. Send to Device widget
+// 2. QR code (if widget is not available)
+
+.has-send-to-device.show-focus {
     .focus-container {
         display: block;
     }
 
-    @media #{$mq-phone-wide} {
-        .mobile-download-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin: 0 auto;
-            width: 400px;
+    @media #{$mq-tablet} {
+        .content-container {
+            width: 600px;
         }
+    }
+}
+
+.no-send-to-device.show-focus {
+    .focus-container {
+        display: block;
     }
 
     @media #{$mq-tablet} {
         .content-container {
-            width: 700px;
+            width: 680px;
         }
 
         .focus-container {
             display: grid;
             grid-column-gap: 20px;
             grid-template-columns: repeat(2, 1fr);
-        }
-
-        .mobile-download-buttons {
-            justify-content: space-between;
-            margin: 0;
-            width: 350px;
         }
     }
 
@@ -335,13 +317,88 @@ html[dir="rtl"] .content-header {
     }
 }
 
-// common
-.qr-wrapper {
-    max-width: 280px;
-    margin: 0 auto 40px;
+
+//* -------------------------------------------------------------------------- */
+// Firefox Klar - 2 possible states:
+// 1. Send to Device widget
+// 2. QR code (if widget is not available)
+
+.has-send-to-device.show-klar {
+    .klar-container {
+        display: block;
+    }
 
     @media #{$mq-tablet} {
-        margin: 0 0 40px;
+        .content-container {
+            width: 600px;
+        }
+    }
+}
+
+.no-send-to-device.show-klar {
+    .klar-container {
+        display: block;
+    }
+
+    @media #{$mq-tablet} {
+        .content-container {
+            width: 680px;
+        }
+
+        .klar-container {
+            display: grid;
+            grid-column-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .content-container {
+            width: 840px;
+        }
+
+        .klar-container {
+            grid-column-gap: 60px;
+            grid-template-columns: auto 350px;
+        }
+    }
+}
+
+// QR wrapper
+.qr-wrapper {
+    max-width: 280px;
+    margin: 0 auto;
+
+    @media #{$mq-tablet} {
         max-width: none;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Store badges
+
+.mobile-download-buttons {
+    margin: 40px auto;
+    width: 200px;
+
+    @media #{$mq-phone-wide} {
+        display: flex;
+        justify-content: space-between;
+        width: 350px;
+
+        li {
+            margin: 0 10px;
+        }
+    }
+}
+
+.no-send-to-device .mobile-download-buttons {
+    @media #{$mq-tablet} {
+        grid-column: 2;
+        margin: 20px 0;
+
+        li {
+            margin: 0;
+        }
     }
 }
