@@ -1204,6 +1204,26 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         'email': {
             'all': 'download-firefox-mobile-whatsnew',
         }
+    },
+    'fx-focus': {
+        'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', parser=ListOf(str)),
+        'sms': {
+            'all': 'focus_sms_whatsnew',
+        },
+        'email': {
+            'all': 'download_firefox_focus_whatsnew',
+        }
+    },
+    'fx-klar': {
+        'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', parser=ListOf(str)),
+        'sms': {
+            # TODO: this should be a basket ID for Klar: 'klar_sms_whatsnew'
+            'all': 'focus_sms_whatsnew',
+        },
+        'email': {
+            # TODO: this should be a basket ID for Klar: 'download_firefox_focus_whatsnew'
+            'all': 'download_firefox_focus_whatsnew',
+        }
     }
 }
 
