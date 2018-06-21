@@ -246,6 +246,10 @@ html[dir="rtl"] .content-header {
 }
 
 .no-send-to-device.show-fx-mobile {
+    .fx-mobile-container {
+        display: block;
+    }
+
     @media #{$mq-tablet} {
         .content-container {
             width: 680px;

@@ -17,12 +17,18 @@ This iteration of /whatsnew has multiple states:
         Display a QR code for Firefox Mobile
 
 3. User is logged in to Sync, and *does* have a mobile device set up:
-    Display App/Play store badges for Focus
 
-    i. Send to Device widget is available in the user's locale:
-        Display the Send to Device widget, configured for Focus
-    ii. Send to Device widget is *not* available in the user's locale:
-        Display a QR code for Focus
+    i. If they're in Germany, Austria, or Switzerland:
+        a. Send to Device widget is available in the user's locale:
+            Display the Send to Device widget, configured for Klar
+        b. Send to Device widget is *not* available in the user's locale:
+            Display a QR code for Klar
+    ii. If they're in any other country *or* geolocation fails
+        a. Send to Device widget is available in the user's locale:
+            Display the Send to Device widget, configured for Focus
+        b. Send to Device widget is *not* available in the user's locale:
+            Display a QR code for Focus
+
 */
 
 (function(Mozilla, $) {
@@ -114,7 +120,7 @@ This iteration of /whatsnew has multiple states:
     }
 
     client.getFxaDetails(function(details) {
-        // TODO: verify these are the correct 2-letter country codes
+        // Focus is known as Klar in Austria, Switzerland, and Germany.
         var klarCountryCodes = ['at', 'ch', 'de'];
 
         // if user is not signed in to FxA, show the FxA form
