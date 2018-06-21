@@ -237,22 +237,7 @@
   </section>
 {%- endmacro %}
 
-{% macro send_yourself(include_title=True, title_text='', ios_link='', spinner_color='', message_set='default', id='send-yourself', product='firefox') %}
-  {% if product == 'klar' %}
-    {% set ios_link = 'TODO-Klar_iOS_link' %}
-    {% set android_link = 'TODO-Klar_Android_link' %}
-  {% elif product == 'focus' %}
-    {% set ios_link = 'TODO-Focus_iOS_link' %}
-    {% set android_link = 'TODO-Focus_Android_link' %}
-  {% else %}
-    {# Default to Firefox #}
-    {# If no App Store link is specified, use base with default "ct" param value #}
-    {# See https://bugzilla.mozilla.org/show_bug.cgi?id=1196310#c23 #}
-    {% if ios_link == '' %}
-      {% set ios_link = firefox_ios_url('mozorg') %}
-    {% endif %}
-    {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK %}
-  {% endif %}
+{% macro send_yourself(include_title=True, title_text='', spinner_color='', message_set='default', id='send-yourself', product='firefox') %}
   <section id="{{ id }}" class="mzp-c-sendyourself {% if include_title %}mzp-has-title{% endif %}" data-countries="{{ send_to_device_sms_countries(message_set) }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
     <div class="mzp-c-sendyourself-container">
       {% if include_title %}
