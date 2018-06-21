@@ -55,8 +55,14 @@ if (typeof Mozilla === 'undefined') {
     /**
      * Initialise the form messaging and bind events.
      */
-    SendYourself.prototype.init = function() {
+    SendYourself.prototype.init = function(countryCode) {
         if (this.$widget.length === 1) {
+            // if a country code was passed (from an outside geo lookup),
+            // store the value and skip any further geo lookups
+            if (countryCode) {
+                SendYourself.COUNTRY_CODE = countryCode;
+            }
+
             this.getLocation();
             this.bindEvents();
         }
@@ -71,6 +77,9 @@ if (typeof Mozilla === 'undefined') {
 
         // if a dev has added ?geo=<country code> to the URL
         // we can skip the geo lookup and act as if it worked
+
+        // this will override any countryCode passed in via
+        // the init method
         if (window.location.search.indexOf('geo=') !== -1) {
             var urlRe = /geo=([a-z]{2})/i;
             var match = urlRe.exec(window.location.search);
@@ -84,25 +93,35 @@ if (typeof Mozilla === 'undefined') {
             }
         }
 
-        // should /country-code.json be slow to load,
-        // just show the email messaging after 5 seconds waiting.
-        this.formTimeout = setTimeout(self.updateMessaging, 5000);
+        // if a country code is already set, skip the geo lookup (but
+        // still run the callback)
+        if (!SendYourself.COUNTRY_CODE) {
+            // should /country-code.json be slow to load,
+            // just show the email messaging after 5 seconds waiting.
+            this.formTimeout = setTimeout(function() { self.updateMessaging() }, 5000);
 
-        $.get('/country-code.json')
-            .done(function(data) {
-                if (data && data.country_code) {
-                    SendYourself.COUNTRY_CODE = data.country_code.toLowerCase();
-                }
-                self.updateMessaging();
-            })
-            .fail(function() {
-                // something went wrong, show only the email messaging.
-                self.updateMessaging();
-            }).always(function() {
-                if (typeof self.geoCallback === 'function') {
-                    self.geoCallback(SendYourself.COUNTRY_CODE);
-                }
-            });
+            $.get('/country-code.json')
+                .done(function(data) {
+                    if (data && data.country_code) {
+                        SendYourself.COUNTRY_CODE = data.country_code.toLowerCase();
+                    }
+                    self.updateMessaging();
+                })
+                .fail(function() {
+                    // something went wrong, show only the email messaging.
+                    self.updateMessaging();
+                }).always(function() {
+                    if (typeof self.geoCallback === 'function') {
+                        self.geoCallback(SendYourself.COUNTRY_CODE);
+                    }
+                });
+        } else {
+            self.updateMessaging();
+
+            if (typeof self.geoCallback === 'function') {
+                self.geoCallback(SendYourself.COUNTRY_CODE);
+            }
+        }
     };
 
     /**

@@ -25,7 +25,7 @@ This iteration of /whatsnew has multiple states:
         Display a QR code for Focus
 */
 
-(function(Mozilla) {
+(function(Mozilla, $) {
     'use strict';
 
     var client = Mozilla.Client;
@@ -49,24 +49,18 @@ This iteration of /whatsnew has multiple states:
     }
 
     function showFirefoxMobile() {
-        var widgetId = 'send-firefox';
-
         // Show the content
         mainContent.classList.add('show-fx-mobile');
 
         // Set the title
         document.title = $strings.data('fxmobile-title');
 
-        // initialize Send to Device widget if present/available
-        if (widgetId) {
-            var form = new Mozilla.SendYourself(widgetId);
-            form.init();
-        }
+        var form = new Mozilla.SendYourself('send-firefox');
+        form.init();
     }
 
 
-    function showFocus() {
-        var widgetId = 'send-focus';
+    function showFocus(countryCode) {
         var logoFx = document.getElementById('logo-fx');
         var logoFocus = document.getElementById('logo-focus');
 
@@ -83,16 +77,12 @@ This iteration of /whatsnew has multiple states:
             logoFocus.classList.replace('hiding', 'showing');
         }, 150);
 
-        // initialize Send Yourself widget if present/available
-        if (widgetId) {
-            var form = new Mozilla.SendYourself(widgetId);
-            form.init();
-        }
+        var form = new Mozilla.SendYourself('send-focus');
+        form.init(countryCode);
     }
 
 /* eslint-disable */
-    function showKlar() {
-        var widgetId = 'send-klar';
+    function showKlar(countryCode) {
         var logoFx = document.getElementById('logo-fx');
         var logoFocus = document.getElementById('logo-focus');
 
@@ -109,11 +99,8 @@ This iteration of /whatsnew has multiple states:
             logoFocus.classList.replace('hiding', 'showing');
         }, 150);
 
-        // initialize Send Yourself widget if present/available
-        if (widgetId) {
-            var form = new Mozilla.SendYourself(widgetId);
-            form.init();
-        }
+        var form = new Mozilla.SendYourself('send-klar');
+        form.init(countryCode);
     }
 /* eslint-enable */
 
@@ -127,16 +114,35 @@ This iteration of /whatsnew has multiple states:
     }
 
     client.getFxaDetails(function(details) {
+        // TODO: verify these are the correct 2-letter country codes
+        var klarCountryCodes = ['at', 'ch', 'de'];
+
         // if user is not signed in to FxA, show the FxA form
         if (!details.setup) {
             showFxa();
         // if the user is signed in to FxA but doesn't have any mobile devices set up, show Fx mobile content
         } else if (details.mobileDevices === 'unknown' || details.mobileDevices === 0) {
             showFirefoxMobile();
-        // if user is signed in to FxA and has mobile devices set up, show Focus content
+        // if user is signed in to FxA and has mobile devices set up, perform geo lookup
+        // to determine whether to show Focus or Klar content
         } else {
-        // TODO: geo lookup - if in Germany/Austria/Switzerland { showKlar() } else {
-            showFocus();
+            $.get('/country-code.json')
+                .done(function(data) {
+                    if (data && data.country_code) {
+                        if (klarCountryCodes.includes(data.country_code.toLowerCase())) {
+                            showKlar(data.country_code.toLowerCase());
+                        } else {
+                            showFocus(data.country_code.toLowerCase());
+                        }
+                    // if for some reason data isn't as expected, show Focus content
+                    } else {
+                        showFocus();
+                    }
+                })
+                .fail(function () {
+                    // something went wrong - show Focus content
+                    showFocus();
+                });
         }
     });
-})(window.Mozilla);
+})(window.Mozilla, window.jQuery);
