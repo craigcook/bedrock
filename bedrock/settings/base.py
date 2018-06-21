@@ -1217,7 +1217,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     'fx-klar': {
         'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW61', default='US', parser=ListOf(str)),
         'sms': {
-            'all': 'klar_sms_whatsnew',
+            'all': 'focus_sms_whatsnew',
         },
         'email': {
             'all': 'download_firefox_klar_whatsnew',
