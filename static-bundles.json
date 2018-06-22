@@ -903,7 +903,8 @@
       "files": [
         "js/base/mozilla-fxa-iframe.js",
         "js/base/send-yourself.js",
-        "js/firefox/whatsnew/whatsnew-61.js"
+        "js/firefox/whatsnew/whatsnew-61.js",
+        "js/firefox/whatsnew/whatsnew-61-init.js"
       ],
       "name": "firefox_whatsnew_61"
     },

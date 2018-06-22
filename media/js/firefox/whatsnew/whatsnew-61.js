@@ -34,121 +34,129 @@ This iteration of /whatsnew has multiple states:
 (function(Mozilla, $) {
     'use strict';
 
-    var client = Mozilla.Client;
-    var mainContent = document.querySelector('.main-content');
-    var $strings = $('#strings');
+    Mozilla.WNP61 = {
+        client: Mozilla.Client,
+        klarCountryCodes: ['at', 'ch', 'de'],
+        logoFocus: document.getElementById('logo-focus'),
+        logoFx: document.getElementById('logo-fx'),
+        mainContent: document.querySelector('.main-content'),
+        $strings: $('#strings')
+    };
 
-    function showFxa() {
+    Mozilla.WNP61.showFxa = function() {
         // Show the content
-        mainContent.classList.add('show-fxa');
+        this.mainContent.classList.add('show-fxa');
 
         // Set the title
-        document.title = $strings.data('fxaccount-title');
+        document.title = this.$strings.data('fxaccount-title');
 
         // initialize the FxA iframe
-        Mozilla.Client.getFirefoxDetails(function(data) {
+        this.client.getFirefoxDetails(function(data) {
             Mozilla.FxaIframe.init({
                 distribution: data.distribution,
                 gaEventName: 'whatsnew-fxa'
             });
         });
-    }
+    };
 
-    function showFirefoxMobile() {
+    Mozilla.WNP61.showFirefoxMobile = function() {
         // Show the content
-        mainContent.classList.add('show-fx-mobile');
+        this.mainContent.classList.add('show-fx-mobile');
 
         // Set the title
-        document.title = $strings.data('fxmobile-title');
+        document.title = this.$strings.data('fxmobile-title');
 
         var form = new Mozilla.SendYourself('send-firefox');
         form.init();
-    }
+    };
 
-
-    function showFocus(countryCode) {
-        var logoFx = document.getElementById('logo-fx');
-        var logoFocus = document.getElementById('logo-focus');
-
+    Mozilla.WNP61.showFocus = function(countryCode) {
         // Show the content
-        mainContent.classList.add('show-focus');
+        this.mainContent.classList.add('show-focus');
 
         // Set the title
-        document.title = $strings.data('fxfocus-title');
+        document.title = this.$strings.data('fxfocus-title');
 
         // swap out Firefox logo for Focus logo
-        logoFx.classList.replace('showing', 'hiding');
+        this.logoFx.classList.replace('showing', 'hiding');
 
         setTimeout(function() {
-            logoFocus.classList.replace('hiding', 'showing');
-        }, 150);
+            this.logoFocus.classList.replace('hiding', 'showing');
+        }.bind(this), 150);
 
         var form = new Mozilla.SendYourself('send-focus');
         form.init(countryCode);
-    }
+    };
 
 
-    function showKlar(countryCode) {
-        var logoFx = document.getElementById('logo-fx');
-        var logoFocus = document.getElementById('logo-focus');
-
+    Mozilla.WNP61.showKlar = function(countryCode) {
         // Show the content
-        mainContent.classList.add('show-klar');
+        this.mainContent.classList.add('show-klar');
 
         // Set the title
-        document.title = $strings.data('fxfocus-title');
+        document.title = this.$strings.data('fxfocus-title');
 
         // swap out Firefox logo for Focus logo
-        logoFx.classList.replace('showing', 'hiding');
+        this.logoFx.classList.replace('showing', 'hiding');
 
         setTimeout(function() {
-            logoFocus.classList.replace('hiding', 'showing');
-        }, 150);
+            this.logoFocus.classList.replace('hiding', 'showing');
+        }.bind(this), 150);
 
         var form = new Mozilla.SendYourself('send-klar');
         form.init(countryCode);
-    }
+    };
 
+    Mozilla.WNP61.geolocate = function(callback) {
+        $.get('/country-code.json')
+            .done(function(data) {
+                if (data && data.country_code) {
+                    callback(data.country_code.toLowerCase());
+                } else {
+                    callback();
+                }
+            })
+            .fail(function() {
+                callback();
+            });
+    };
 
-    // bug 1419573 - only show "Your Firefox is up to date" if it's the latest version.
-    if (client.isFirefoxDesktop) {
-        client.getFirefoxDetails(function(data) {
-            if (data.isUpToDate) {
-                document.querySelector('.main-header').classList.add('show-up-to-date-message');
+    Mozilla.WNP61.showFocusOrKlar = function(countryCode) {
+        if (countryCode) {
+            if (this.klarCountryCodes.includes(countryCode)) {
+                this.showKlar(countryCode);
+            } else {
+                this.showFocus(countryCode);
             }
-        });
-    }
+        } else {
+            this.showFocus();
+        }
+    };
 
-    client.getFxaDetails(function(details) {
-        // Focus is known as Klar in Austria, Switzerland, and Germany.
-        var klarCountryCodes = ['at', 'ch', 'de'];
+    Mozilla.WNP61.checkUpToDate = function() {
+        // bug 1419573 - only show "Your Firefox is up to date" if it's the latest version.
+        if (this.client.isFirefoxDesktop) {
+            this.client.getFirefoxDetails(function(data) {
+                if (data.isUpToDate) {
+                    document.querySelector('.main-header').classList.add('show-up-to-date-message');
+                }
+            });
+        }
+    };
+
+    Mozilla.WNP61.init = function(fxaDetails) {
+        this.checkUpToDate();
 
         // if user is not signed in to FxA, show the FxA form
-        if (!details.setup) {
-            showFxa();
-        // if the user is signed in to FxA but doesn't have any mobile devices set up, show Fx mobile content
-        } else if (details.mobileDevices === 'unknown' || details.mobileDevices === 0) {
-            showFirefoxMobile();
-        // if user is signed in to FxA and has mobile devices set up, perform geo lookup
-        // to determine whether to show Focus or Klar content
+        if (!fxaDetails.setup) {
+            this.showFxa();
+            // if the user is signed in to FxA but doesn't have any mobile devices set up, show Fx mobile content
+        } else if (fxaDetails.mobileDevices === 'unknown' || fxaDetails.mobileDevices === 0) {
+            this.showFirefoxMobile();
+            // if user is signed in to FxA and has mobile devices set up, perform geo lookup
+            // to determine whether to show Focus or Klar content
         } else {
-            $.get('/country-code.json')
-                .done(function(data) {
-                    if (data && data.country_code) {
-                        if (klarCountryCodes.includes(data.country_code.toLowerCase())) {
-                            showKlar(data.country_code.toLowerCase());
-                        } else {
-                            showFocus(data.country_code.toLowerCase());
-                        }
-                    // if for some reason data isn't as expected, show Focus content
-                    } else {
-                        showFocus();
-                    }
-                })
-                .fail(function () {
-                    // something went wrong - show Focus content
-                    showFocus();
-                });
+            this.geolocate(this.showFocusOrKlar.bind(this));
         }
-    });
+    };
 })(window.Mozilla, window.jQuery);
