@@ -1,9 +1,9 @@
 cl-ext.lang==0.1.0 \
     --hash=sha256:90b94aaee4afecbf2a9be3cd65656940f38edea3ddde14b93a02a9e1ee5d1f72 \
     --hash=sha256:662fcccc1ff77063dd9d6bad770c26d1345cf4cf01e679eab136e80f3ec2935c
-compare-locales==7.6.0 \
-    --hash=sha256:312b67f913c75f2b352a63f10fda9bdb824d8edd366e5590f07ca5bb79aea805 \
-    --hash=sha256:617e95574a67d96dc44ec080188e1c60b6c210fe10319f27ab8708a23ed2a5e0
+compare-locales==8.2.0 \
+    --hash=sha256:a447d9702cc9d5c891a4ce7f52267357f98748f413bf8252636952ce53617915 \
+    --hash=sha256:59b2bba3b8b0b07fd637d5b2bb6b357cbb7caf9f0b7b33b9a1b44cb03db7376c
 fluent.migrate==0.8.1 \
     --hash=sha256:0dd5db3cde2c3ac4aed7def1af6f76497b98444308a91febaa19429de7935c75 \
     --hash=sha256:18a87eeb39dd97ca0f40afb97180429a21e8663c5665e80766a7da96c147bd93
