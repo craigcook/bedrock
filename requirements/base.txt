@@ -247,9 +247,9 @@ querystringsafe_base64==1.1.1 \
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
-pbr==1.10.0 \
-    --hash=sha256:f5cf7265a80636ecff66806d13494cbf9d77a3758a65fd8b4d4d4bee81b0c375 \
-    --hash=sha256:186428c270309e6fdfe2d5ab0949ab21ae5f7dea831eab96701b86bd666af39c
+pbr==5.8.0 \
+    --hash=sha256:176e8560eaf61e127817ef93d8a844803abb27a4d4637f0ff3bb783129be2e0a \
+    --hash=sha256:672d8ebee84921862110f23fcec2acea191ef58543d34dfe9ef3d9f13c31cddf
 django-memoize==2.3.1 \
     --hash=sha256:62ac4807710ecf22a7397d008d64d0f798e7230482d4b6072d916cac852a47cd
 django-allow-cidr==0.3.1 \
