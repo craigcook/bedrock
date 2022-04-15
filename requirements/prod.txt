@@ -432,9 +432,9 @@ packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
     # via bleach
-phonenumberslite==8.12.42 \
-    --hash=sha256:656230684742fa4bb24eda791e38f6766fd9197ea3f14fe940b1c1306aecbacc \
-    --hash=sha256:dfa4947e6fddd92b95540400f447727c516fde18a0e7942993ec1274eb28f46e
+phonenumberslite==8.12.46 \
+    --hash=sha256:752555fb0cb9e442054c93fd23ab2ac1b741aea30e6e990be560ef75cac55c21 \
+    --hash=sha256:93aa86c9e9e4b15dda89c4b0e7b9a3b6b854e009441a941a29d3b0202fa575bd
     # via -r requirements/prod.in
 pillow==9.0.1 \
     --hash=sha256:011233e0c42a4a7836498e98c1acf5e744c96a67dd5032a6f666cc1fb97eab97 \
