@@ -188,9 +188,9 @@ django-extensions==3.1.5 \
     --hash=sha256:28e1e1bf49f0e00307ba574d645b0af3564c981a6dfc87209d48cb98f77d0b1a \
     --hash=sha256:9238b9e016bb0009d621e05cf56ea8ce5cce9b32e91ad2026996a7377ca28069
     # via -r requirements/prod.in
-django-jinja==2.10.0 \
-    --hash=sha256:ae6a3fdf1ffa7a9ef6fd2f0a59c1a68c96b29f7f00f5166375658ef392f1ed32 \
-    --hash=sha256:cce084eaf0be8a89f0955cde34cf33da7faaf6c68d05c076eda6fcd98481264c
+django-jinja==2.10.2 \
+    --hash=sha256:bfdfbb55c1f5a679d69ad575d550c4707d386634009152efe014089f3c4d1412 \
+    --hash=sha256:dd003ec1c95c0989eb28a538831bced62b1b61da551cb44a5dfd708fcf75589f
     # via -r requirements/prod.in
 django-jinja-markdown==1.0.1 \
     --hash=sha256:233dcde5d6895416f5613e4ca030e88f18a163e4b676e7aa815d191754f53085 \
