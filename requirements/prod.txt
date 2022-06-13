@@ -247,9 +247,9 @@ fluent-syntax==0.17.0 \
     # via
     #   -r requirements/prod.in
     #   fluent-runtime
-glean-parser==5.1.0 \
-    --hash=sha256:68c22006e961190541e267ab896d0d52a848e3a3caa1ef8ae38447b7447abe1a \
-    --hash=sha256:f2831b686b16e4b930f4e96e36c5d77b620135b8dea086fdbc38d53adfae1d1d
+glean-parser==6.1.1 \
+    --hash=sha256:225dc6d30d9c04459df2aebbd1950691fa32602a9be0228759a5bfaf2ece8581 \
+    --hash=sha256:bc41a57aa432b4d632cbf0df1f0ab1ac720e3028f8b194dabdfbb1c837393b7d
     # via -r requirements/prod.in
 greenlet==0.4.17 \
     --hash=sha256:1023d7b43ca11264ab7052cb09f5635d4afdb43df55e0854498fc63070a0b206 \
