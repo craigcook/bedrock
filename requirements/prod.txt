@@ -560,9 +560,9 @@ packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
     # via django-allow-cidr
-pathspec==0.9.0 \
-    --hash=sha256:7d15c4ddb0b5c802d161efc417ec1a2558ea2653c2e8ad9c19098201dc1c993a \
-    --hash=sha256:e564499435a2673d586f6b2130bb5b95f04a3ba06f81b8f895b651a3c76aabb1
+pathspec==0.10.3 \
+    --hash=sha256:3c95343af8b756205e2aba76e843ba9520a24dd84f68c22b9f93251507509dd6 \
+    --hash=sha256:56200de4077d9d0791465aa9095a01d421861e405b5096955051deefd697d6f6
     # via yamllint
 phonenumberslite==8.13.1 \
     --hash=sha256:0483678b5be31de9e99af2dadcc910d7fcf8f8f9047f595ee1ddee242d1b9c26 \
