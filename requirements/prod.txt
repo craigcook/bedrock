@@ -565,9 +565,9 @@ pathspec==0.9.0 \
     --hash=sha256:7d15c4ddb0b5c802d161efc417ec1a2558ea2653c2e8ad9c19098201dc1c993a \
     --hash=sha256:e564499435a2673d586f6b2130bb5b95f04a3ba06f81b8f895b651a3c76aabb1
     # via yamllint
-phonenumberslite==8.13.1 \
-    --hash=sha256:0483678b5be31de9e99af2dadcc910d7fcf8f8f9047f595ee1ddee242d1b9c26 \
-    --hash=sha256:9cab2ecf5d8d3bc457d7b569706e1d21fd3dc7d48a17d6abb1b7219f1b01ab2a
+phonenumberslite==8.13.4 \
+    --hash=sha256:44cbb13581122164cd8a83b40f12db854277e8a5f9c6e22bd8dc2d8aa98e3260 \
+    --hash=sha256:469eb263160e243aa02fff643502698f99e77bcb6478e9aaa7115838006be122
     # via -r requirements/prod.in
 pillow==9.3.0 \
     --hash=sha256:03150abd92771742d4a8cd6f2fa6246d847dcd2e332a18d0c15cc75bf6703040 \
