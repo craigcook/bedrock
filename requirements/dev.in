@@ -7,7 +7,7 @@ factory-boy==3.2.1
 freezegun==1.2.2
 pipdeptree==2.3.3
 py==1.11.0
-PyPOM==2.2.3
+PyPOM==2.2.4
 pyquery==2.0.0
 pytest==7.2.1  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
 pytest-cov==4.0.0
