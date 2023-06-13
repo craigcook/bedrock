@@ -1,7 +1,7 @@
 -r prod.txt
 
 black==23.1.0
-bpython==0.23
+bpython==0.24
 braceexpand==0.1.7
 factory-boy==3.2.1
 freezegun==1.2.2
