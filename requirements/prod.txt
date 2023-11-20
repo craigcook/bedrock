@@ -602,9 +602,9 @@ newrelic==9.1.1 \
     --hash=sha256:d677f8f11bd69d92a4b359c53a04e02094e5198ed1aa49c9b1ca235522d5efd5 \
     --hash=sha256:fbebaf8d9801eef85827ca2906a7bdbc2a458a226455da49c71857e2ce2b264a
     # via -r requirements/prod.in
-packaging==23.0 \
-    --hash=sha256:714ac14496c3e68c99c29b00845f7a2b85f3bb6f1078fd9f72fd20f0570002b2 \
-    --hash=sha256:b6ad297f8907de0fa2fe1ccbd26fdaf387f5f47c7275fedf8cce89f99446cf97
+packaging==23.2 \
+    --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
+    --hash=sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7
     # via django-allow-cidr
 pillow==10.1.0 \
     --hash=sha256:00f438bb841382b15d7deb9a05cc946ee0f2c352653c7aa659e75e592f6fa17d \
