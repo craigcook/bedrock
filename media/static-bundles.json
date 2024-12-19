@@ -215,6 +215,12 @@
     },
     {
       "files": [
+        "css/base/banners/firefox-newsletter.scss"
+      ],
+      "name": "firefox-newsletter-banner"
+    },
+    {
+      "files": [
         "css/mozorg/home/includes/mofo-donate-promo.scss"
       ],
       "name": "mofo-donate-promo"

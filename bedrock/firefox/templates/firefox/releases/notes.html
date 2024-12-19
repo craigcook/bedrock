@@ -47,6 +47,10 @@
   {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-article') }}
   {{ css_bundle('firefox_releasenotes') }}
+
+  {% if switch('release-notes-newsletter-banner', ['en']) %}
+    {{ css_bundle('firefox-newsletter-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% set channel_name = '' if release.channel == 'Release' else release.channel %}
@@ -388,6 +392,11 @@
     {% endblock %}
 </article>
 </main>
+
+{% if switch('release-notes-newsletter-banner', ['en']) %}
+  {% include 'includes/banners/firefox-newsletter.html' %}
+{% endif %}
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
