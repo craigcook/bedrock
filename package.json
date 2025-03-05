@@ -14,7 +14,7 @@
     "@mozmeao/trafficcop": "^3.1.0",
     "@sentry/browser": "^8.53.0",
     "babel-loader": "^10.0.0",
-    "caniuse-lite": "^1.0.30001701",
+    "caniuse-lite": "^1.0.30001702",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.2",
